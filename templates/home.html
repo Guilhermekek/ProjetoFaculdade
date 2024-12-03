@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'Academia/home.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container"> 
+        <header class="navegacao">
+            <div class="navegacao-esquerda">
+                <h3>Treino Supremo</h3>
+                <i class="fa-solid fa-dumbbell"></i>
+            </div>                                                                  
+            <div class="navegacao-meio">
+                <ul>
+                    <li>FAQ</li>
+                    <li>Planos</li>
+                    <li>Porque Treino Supremo</li>
+                </ul>
+            </div>
+            <div class="navegacao-direita">
+                <h3><a href="{% url 'register' %}">Se inscreva</a></h3>
+                <a href="{% url 'user_page' %}"><button class="btn-grad"><i class="fa-solid fa-user"></i></button></a>
+            </div>
+        </header>                                                                   
+        <div class="corpo">
+            <div class="corpo-esquerdo">
+                <form>
+                    <h1>O melhor site de treino do Brasil</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae modi veniam nihil distinctio eligendi dolore libero laudantium, cum perspiciatis corporis reiciendis eaque aspernatur rerum alias similique excepturi, nobis mollitia dolor?</p>
+                    <input type="email" placeholder="Email">
+                    <button>Entre na lista</button>
+                    <a href="#" class="icon"><i class="fa-brands"></i></a>
+                </form>
+            </div>
+            <div class="corpo-direita">
+                <p>lol</p>
+            </div>
+        </div>
+        <footer>
+            <div class="icones-baxio">
+                <a href="#" class="icon">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="#" class="icon">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="#" class="icon">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="#" class="icon">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+            <div class="contato"></div>
+        </footer>
+    </div>
+</body>
+</html>
