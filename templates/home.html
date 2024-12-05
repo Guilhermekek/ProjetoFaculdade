@@ -28,17 +28,52 @@
             </div>
         </header>                                                                   
         <div class="corpo">
-            <div class="corpo-esquerdo">
-                <form>
-                    <h1>O melhor site de treino do Brasil</h1>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae modi veniam nihil distinctio eligendi dolore libero laudantium, cum perspiciatis corporis reiciendis eaque aspernatur rerum alias similique excepturi, nobis mollitia dolor?</p>
-                    <input type="email" placeholder="Email">
-                    <button>Entre na lista</button>
-                    <a href="#" class="icon"><i class="fa-brands"></i></a>
-                </form>
+            <!-- Título acima do carrossel -->
+            <h1 class="titulo-principal">O melhor site de treino do mundo</h1>
+
+            <!-- Início do carrossel -->
+            <div class="slideshow-container">
+                <!-- Slide 1 -->
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 3</div>
+                    <img src="{% static 'images/image1.jpeg' %}" alt="Treino Supremo - Slide 1" style="width:100%">
+                    <div class="text">Caption Text</div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 3</div>
+                    <img src="{% static 'images/image2.jpeg' %}" alt="Treino Supremo - Slide 2" style="width:100%">
+                    <div class="text">Caption Two</div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 3</div>
+                    <img src="{% static 'images/image3.jpeg' %}" alt="Treino Supremo - Slide 3" style="width:100%">
+                    <div class="text">Caption Three</div>
+                </div>
+
+                <!-- Botões de navegação -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-            <div class="corpo-direita">
-                <p>lol</p>
+            <br>
+
+            <!-- Dots/circles -->
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span> 
+                <span class="dot" onclick="currentSlide(2)"></span> 
+                <span class="dot" onclick="currentSlide(3)"></span> 
+            </div>
+
+            <!-- Texto e formulário abaixo do carrossel -->
+            <div class="formulario">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae modi veniam nihil distinctio eligendi dolore libero laudantium, cum perspiciatis corporis reiciendis eaque aspernatur rerum alias similique excepturi, nobis mollitia dolor?</p>
+                <form>
+                    <input type="email" placeholder="Email" required>
+                    <button type="submit">Entre na lista</button>
+                </form>
             </div>
         </div>
         <footer>
@@ -59,5 +94,6 @@
             <div class="contato"></div>
         </footer>
     </div>
+    <script src="{% static 'js/carrousel.js' %}"></script>
 </body>
 </html>
