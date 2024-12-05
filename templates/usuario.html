@@ -29,6 +29,7 @@
         </header>
 
         <main class="conteudo-principal">
+            {% if not treino_selecionado %}
             <!-- Adicionar novo treino -->
             <div class="adicionar-treino">
                 <button class="btn-adicionar-treino" onclick="toggleForm('formCriarTreino')">
@@ -62,6 +63,7 @@
                 <p id="mensagemSemTreinos">Você ainda não possui treinos cadastrados.</p>
                 {% endfor %}
             </div>
+            {% endif %}
 
             <!-- Detalhes do treino selecionado -->
             {% if treino_selecionado %}
@@ -80,7 +82,7 @@
                     <p>Este treino ainda não possui exercícios.</p>
                     {% endfor %}
                 </ul>
-                <button class="btn-adicionar-exercicio" onclick="toggleForm('formAdicionarExercicio')">Adicionar Exercício</button>
+                <button class="btn-adicionar-exercicio btn-custom" onclick="toggleForm('formAdicionarExercicio')">Adicionar Exercício</button>
 
                 <!-- Formulário de adicionar exercício -->
                 <div id="formAdicionarExercicio" class="form-adicionar-exercicio" style="display: none;">
@@ -100,7 +102,7 @@
                         <button type="submit">Salvar Exercício</button>
                     </form>
                 </div>
-                <button class="btn-voltar" onclick="voltarParaTreinos()">Voltar para Treinos</button>
+                <button class="btn-voltar btn-custom" onclick="voltarParaTreinos()">Voltar para Treinos</button>
             </div>
             {% endif %}
         </main>
