@@ -208,6 +208,26 @@ footer {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
+.btn-custom {
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+}
+
+.btn-custom:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
 
 /* Responsividade */
 @media (max-width: 768px) {
