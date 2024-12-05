@@ -12,11 +12,9 @@
     <div class="container">
         <header class="navegacao">
             <div class="navegacao-esquerda">
-                <!-- Logotipo com ícone de haltere -->
                 <h3><i class="fa-solid fa-dumbbell"></i> Treino Supremo</h3>
             </div>
             <div class="navegacao-direita">
-                <!-- Dropdown do usuário -->
                 <div class="dropdown">
                     <button onclick="toggleDropdown()" class="dropbtn">
                         <i class="fa-solid fa-user"></i>
@@ -31,28 +29,40 @@
         </header>
 
         <main class="conteudo-principal">
-            <!-- Botão de Adicionar Novo Treino -->
             <div class="adicionar-treino">
-                <button class="btn-adicionar-treino" onclick="abrirCriarTreino()">
+                <button class="btn-adicionar-treino" onclick="toggleForm()">
                     <i class="fa-solid fa-plus"></i>
                 </button>
                 <p>Adicionar Novo Treino</p>
             </div>
 
-            <!-- Lista de treinos existentes -->
+            <!-- Formulário de criação de treino oculto por padrão -->
+            <div id="formCriarTreino" class="form-criar-treino">
+                <h2>Criar Novo Treino</h2>
+                <form method="post" action="{% url 'adicionar_treino' %}">
+                    {% csrf_token %}
+                    <label for="nome">Nome do Treino:</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao"></textarea>
+                    <button type="submit">Salvar Treino</button>
+                </form>
+            </div>
+
             <div class="lista-treinos">
-                <!-- Exemplo de treino existente -->
+                {% for treino in treinos %}
                 <div class="treino-card">
-                    <h2>Treino A</h2>
-                    <p>Foco em membros superiores</p>
-                    <button class="btn-ver-treino">Ver Treino</button>
+                    <h2>{{ treino.nome }}</h2>
+                    <p>{{ treino.descricao }}</p>
+                    <button class="btn-ver-treino" onclick="abrirDetalhesTreino({{ treino.id }})">Ver Treino</button>
                 </div>
-                <!-- Mais treinos podem ser adicionados aqui -->
+                {% empty %}
+                <p id="mensagemSemTreinos">Você ainda não possui treinos cadastrados.</p>
+                {% endfor %}
             </div>
         </main>
 
         <footer>
-            <!-- Conteúdo do rodapé -->
             <div class="icones-baixo">
                 <a href="#" class="icon">
                     <i class="fa-brands fa-linkedin"></i>
@@ -70,6 +80,6 @@
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
