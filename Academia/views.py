@@ -29,4 +29,4 @@ def register(request):
 
 def user_page(request):
     # User page logic
-    return render(request, 'user.html')
+    return render(request, 'usuario.html')

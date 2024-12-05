@@ -1,0 +1,212 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, #b3b28e, #968229);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+}
+
+.navegacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.navegacao-esquerda h3 {
+    font-size: 24px;
+    color: #F09819;
+    display: flex;
+    align-items: center;
+}
+
+.navegacao-esquerda h3 i {
+    margin-right: 10px;
+}
+
+.dropbtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* posiciona o dropdown abaixo do botão */
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+.conteudo-principal {
+    padding: 20px;
+    flex: 1;
+}
+
+.adicionar-treino {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Estilos atualizados para o btn-adicionar-treino */
+.btn-adicionar-treino {
+    font-size: 28px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    font-weight: 600;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+}
+
+.btn-adicionar-treino:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.adicionar-treino p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.lista-treinos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.treino-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.treino-card h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #F09819;
+}
+
+.treino-card p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.btn-ver-treino {
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+}
+
+.btn-ver-treino:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Rodapé */
+footer {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.icones-baixo {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.icones-baixo .icon {
+    color: #F09819;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.icones-baixo .icon:hover {
+    color: #EDDE5D;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .lista-treinos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .treino-card {
+        width: 100%;
+    }
+}
