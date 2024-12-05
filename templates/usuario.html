@@ -12,11 +12,9 @@
     <div class="container">
         <header class="navegacao">
             <div class="navegacao-esquerda">
-                <!-- Logotipo com ícone de haltere -->
                 <h3><i class="fa-solid fa-dumbbell"></i> Treino Supremo</h3>
             </div>
             <div class="navegacao-direita">
-                <!-- Dropdown do usuário -->
                 <div class="dropdown">
                     <button onclick="toggleDropdown()" class="dropbtn">
                         <i class="fa-solid fa-user"></i>
@@ -31,28 +29,83 @@
         </header>
 
         <main class="conteudo-principal">
-            <!-- Botão de Adicionar Novo Treino -->
+            <!-- Adicionar novo treino -->
             <div class="adicionar-treino">
-                <button class="btn-adicionar-treino" onclick="abrirCriarTreino()">
+                <button class="btn-adicionar-treino" onclick="toggleForm('formCriarTreino')">
                     <i class="fa-solid fa-plus"></i>
                 </button>
                 <p>Adicionar Novo Treino</p>
             </div>
 
-            <!-- Lista de treinos existentes -->
-            <div class="lista-treinos">
-                <!-- Exemplo de treino existente -->
-                <div class="treino-card">
-                    <h2>Treino A</h2>
-                    <p>Foco em membros superiores</p>
-                    <button class="btn-ver-treino">Ver Treino</button>
-                </div>
-                <!-- Mais treinos podem ser adicionados aqui -->
+            <!-- Formulário de criação de treino -->
+            <div id="formCriarTreino" class="form-criar-treino" style="display: none;">
+                <h2>Criar Novo Treino</h2>
+                <form method="post" action="{% url 'adicionar_treino' %}">
+                    {% csrf_token %}
+                    <label for="nome">Nome do Treino:</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao"></textarea>
+                    <button type="submit">Salvar Treino</button>
+                </form>
             </div>
+
+            <!-- Lista de treinos -->
+            <div id="listaTreinos" class="lista-treinos">
+                {% for treino in treinos %}
+                <div class="treino-card">
+                    <h2>{{ treino.nome }}</h2>
+                    <p>{{ treino.descricao }}</p>
+                    <button class="btn-modificar-treino btn-ver-treino" onclick="modificarTreino('{{ treino.id }}')">Modificar Treino</button>
+                </div>
+                {% empty %}
+                <p id="mensagemSemTreinos">Você ainda não possui treinos cadastrados.</p>
+                {% endfor %}
+            </div>
+
+            <!-- Detalhes do treino selecionado -->
+            {% if treino_selecionado %}
+            <div id="detalhesTreino" class="detalhes-treino">
+                <h2>{{ treino_selecionado.nome }}</h2>
+                <ul class="lista-exercicios">
+                    {% for exercicio in treino_selecionado.exercicios.all %}
+                    <li>
+                        <p><strong>{{ exercicio.nome }}</strong></p>
+                        <p>Repetições: {{ exercicio.repeticoes }}</p>
+                        <p>Descanso: {{ exercicio.tempo_descanso }}</p>
+                        <p>Peso: {{ exercicio.peso }} kg</p>
+                        <p>{{ exercicio.descricao }}</p>
+                    </li>
+                    {% empty %}
+                    <p>Este treino ainda não possui exercícios.</p>
+                    {% endfor %}
+                </ul>
+                <button class="btn-adicionar-exercicio" onclick="toggleForm('formAdicionarExercicio')">Adicionar Exercício</button>
+
+                <!-- Formulário de adicionar exercício -->
+                <div id="formAdicionarExercicio" class="form-adicionar-exercicio" style="display: none;">
+                    <h3>Adicionar Exercício</h3>
+                    <form method="post" action="{% url 'adicionar_exercicio' treino_selecionado.id %}">
+                        {% csrf_token %}
+                        <label for="nome_exercicio">Nome do Exercício:</label>
+                        <input type="text" id="nome_exercicio" name="nome" required>
+                        <label for="repeticoes">Repetições:</label>
+                        <input type="number" id="repeticoes" name="repeticoes" required>
+                        <label for="tempo_descanso">Tempo de Descanso (hh:mm:ss):</label>
+                        <input type="text" id="tempo_descanso" name="tempo_descanso" required>
+                        <label for="peso">Peso (kg):</label>
+                        <input type="number" step="0.01" id="peso" name="peso" required>
+                        <label for="descricao_exercicio">Descrição:</label>
+                        <textarea id="descricao_exercicio" name="descricao"></textarea>
+                        <button type="submit">Salvar Exercício</button>
+                    </form>
+                </div>
+                <button class="btn-voltar" onclick="voltarParaTreinos()">Voltar para Treinos</button>
+            </div>
+            {% endif %}
         </main>
 
         <footer>
-            <!-- Conteúdo do rodapé -->
             <div class="icones-baixo">
                 <a href="#" class="icon">
                     <i class="fa-brands fa-linkedin"></i>
@@ -70,6 +123,6 @@
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

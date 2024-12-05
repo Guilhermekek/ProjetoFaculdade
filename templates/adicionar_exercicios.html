@@ -1,0 +1,31 @@
+<!-- adicionar_exercicios.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Exercícios ao Treino</title>
+</head>
+<body>
+    <h1>Adicionar Exercícios ao Treino: {{ treino.nome }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="nome">Nome do Exercício:</label>
+        <input type="text" id="nome" name="nome" required><br>
+
+        <label for="repeticoes">Repetições:</label>
+        <input type="number" id="repeticoes" name="repeticoes" required><br>
+
+        <label for="tempo_descanso">Tempo de Descanso (hh:mm:ss):</label>
+        <input type="text" id="tempo_descanso" name="tempo_descanso" required><br>
+
+        <label for="peso">Peso (kg):</label>
+        <input type="number" step="0.01" id="peso" name="peso" required><br>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao"></textarea><br>
+
+        <button type="submit">Adicionar Exercício</button>
+    </form>
+    <a href="{% url 'user_page' %}">Concluir e Voltar à Página do Usuário</a>
+</body>
+</html>
