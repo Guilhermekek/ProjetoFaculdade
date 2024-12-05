@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Treino
+from .models import Treino, Exercicio
+from datetime import timedelta
 
 def login_view(request):
 
@@ -32,12 +33,49 @@ def register(request):
 @login_required
 def user_page(request):
     treinos = Treino.objects.filter(usuario=request.user)
-    return render(request, 'usuario.html', {'treinos': treinos})
+    treino_id = request.GET.get('treino_id')
+    treino_selecionado = None
+    if treino_id:
+        treino_selecionado = get_object_or_404(Treino, id=treino_id, usuario=request.user)
+    return render(request, 'usuario.html', {'treinos': treinos, 'treino_selecionado': treino_selecionado})
 
 @login_required
 def adicionar_treino(request):
     if request.method == 'POST':
         nome = request.POST.get('nome')
         descricao = request.POST.get('descricao')
-        Treino.objects.create(usuario=request.user, nome=nome, descricao=descricao)
+        novo_treino = Treino.objects.create(usuario=request.user, nome=nome, descricao=descricao)
+        messages.success(request, 'Treino criado com sucesso! Adicione exercícios ao seu treino.')
+        return redirect(f'/user/?treino_id={novo_treino.id}')
+    return redirect('user_page')
+
+@login_required
+def adicionar_exercicio(request, treino_id):
+    treino = get_object_or_404(Treino, id=treino_id, usuario=request.user)
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        repeticoes = request.POST.get('repeticoes')
+        tempo_descanso_str = request.POST.get('tempo_descanso')
+        peso = request.POST.get('peso')
+        descricao = request.POST.get('descricao')
+
+        # Converter tempo_descanso de string para timedelta
+        try:
+            horas, minutos, segundos = map(int, tempo_descanso_str.split(':'))
+            tempo_descanso = timedelta(hours=horas, minutes=minutos, seconds=segundos)
+        except ValueError:
+            messages.error(request, 'Formato de tempo de descanso inválido. Use hh:mm:ss.')
+            return redirect(f'/user/?treino_id={treino.id}')
+
+        Exercicio.objects.create(
+            treino=treino,
+            nome=nome,
+            repeticoes=repeticoes,
+            tempo_descanso=tempo_descanso,
+            peso=peso,
+            descricao=descricao
+        )
+        messages.success(request, 'Exercício adicionado com sucesso!')
+        return redirect(f'/user/?treino_id={treino.id}')
+
     return redirect('user_page')

@@ -7,4 +7,6 @@ urlpatterns = [
     path('user/', views.user_page, name='user_page'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('adicionar_treino/', views.adicionar_treino, name='adicionar_treino'),
+    path('treino/<int:treino_id>/adicionar_exercicio/', views.adicionar_exercicio, name='adicionar_exercicio'),
+
 ]

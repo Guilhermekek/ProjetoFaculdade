@@ -1,18 +1,19 @@
-// script.js
+function modificarTreino(treinoId) {
+    // Oculta todos os treinos e exibe os detalhes do treino selecionado
+    document.getElementById('listaTreinos').style.display = 'none';
+    window.location.href = `/user/?treino_id=${treinoId}`;
+}
 
-function toggleForm() {
-    var form = document.getElementById('formCriarTreino');
-    var mensagemSemTreinos = document.getElementById('mensagemSemTreinos');
+function voltarParaTreinos() {
+    // Redireciona para a página de treinos sem um treino selecionado
+    window.location.href = '/user/';
+}
 
+function toggleForm(formId) {
+    var form = document.getElementById(formId);
     if (form.style.display === 'none' || form.style.display === '') {
         form.style.display = 'block';
-        if (mensagemSemTreinos) {
-            mensagemSemTreinos.style.display = 'none';
-        }
     } else {
         form.style.display = 'none';
-        if (mensagemSemTreinos) {
-            mensagemSemTreinos.style.display = 'block';
-        }
     }
 }
