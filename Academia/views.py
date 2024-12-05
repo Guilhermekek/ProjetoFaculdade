@@ -3,8 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
 def login_view(request):
-    if request.user.is_authenticated:
-        return redirect('home')  # Redireciona o usuario se ele ja estiver autentificado
+
 
     if request.method == 'POST':
         username = request.POST['username']  # 'username' ao inves de e-mail por preguiça mesmo

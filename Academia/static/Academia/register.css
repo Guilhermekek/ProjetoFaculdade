@@ -1,0 +1,129 @@
+/* register.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #b3b28e, #968229);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    width: 400px;
+    padding: 40px 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header i {
+    font-size: 50px;
+    color: #968229;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-top: 10px;
+    color: #333;
+}
+
+.register-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.register-form button {
+    padding: 12px;
+    background-color: #968229;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.register-form button:hover {
+    background-color: #b3b28e;
+}
+
+.register-form .error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.alternative-register {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.alternative-register p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #555;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #968229;
+}
+
+.signin-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signin-link a {
+    color: #968229;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signin-link a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.footer-links a {
+    color: #aaa;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
