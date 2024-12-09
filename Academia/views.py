@@ -79,3 +79,25 @@ def adicionar_exercicio(request, treino_id):
         return redirect(f'/user/?treino_id={treino.id}')
 
     return redirect('user_page')
+
+@login_required
+def remover_treino(request, treino_id):
+    treino = get_object_or_404(Treino, id=treino_id, usuario=request.user)
+    if request.method == 'POST':
+        treino.delete()
+        messages.success(request, 'Treino removido com sucesso!')
+        return redirect('user_page')
+    # Se chegar por GET, apenas redireciona, já que não queremos confirmar nada
+    return redirect('user_page')
+
+
+@login_required
+def remover_exercicio(request, exercicio_id):
+    exercicio = get_object_or_404(Exercicio, id=exercicio_id, treino__usuario=request.user)
+    if request.method == 'POST':
+        treino_id = exercicio.treino.id
+        exercicio.delete()
+        messages.success(request, 'Exercício removido com sucesso!')
+        return redirect(f'/user/?treino_id={treino_id}')
+    # Caso chegue via GET, simplesmente redireciona de volta
+    return redirect('user_page')

@@ -58,6 +58,11 @@
                     <h2>{{ treino.nome }}</h2>
                     <p>{{ treino.descricao }}</p>
                     <button class="btn-modificar-treino btn-ver-treino" onclick="modificarTreino('{{ treino.id }}')">Modificar Treino</button>
+                    <!-- Botão para deletar treino -->
+                    <form method="post" action="{% url 'remover_treino' treino.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-custom" style="background-color: #f44336; color: white; margin-left:10px;">Deletar Treino</button>
+                    </form>
                 </div>
                 {% empty %}
                 <p id="mensagemSemTreinos">Você ainda não possui treinos cadastrados.</p>
@@ -77,6 +82,11 @@
                         <p>Descanso: {{ exercicio.tempo_descanso }}</p>
                         <p>Peso: {{ exercicio.peso }} kg</p>
                         <p>{{ exercicio.descricao }}</p>
+                        <!-- Botão para deletar exercício -->
+                        <form method="post" action="{% url 'remover_exercicio' exercicio.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-custom" style="background-color: #f44336; color: white;">Deletar Exercício</button>
+                        </form>
                     </li>
                     {% empty %}
                     <p>Este treino ainda não possui exercícios.</p>
